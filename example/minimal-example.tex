@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{Yifan_Ju_Personal_Template}
+
+% ========== PAGE LAYOUT MODE ==========
+\setTitleLayoutMode{coveronly} % Options: titleonly, coveronly, both
+
+% ========== COVER PAGE SETUP ==========
+\setCoverSeasonYear{Year Season}
+\setCoverTitle{Cover Title（封面标题）}
+\setCoverCourse{Course Name}
+
+% Cover fields: 2 fields
+\setCoverFieldsNumber{2}
+\setCoverFieldOne{Student ID}{123456789}
+\setCoverFieldTwo{Date}{MM/DD/YYYY}
+
+% Cover images
+\setSchoolLogo{UTSC.pdf}
+\setSchoolLogoScale{0.25}
+
+\setSignatureImage{鞠逸凡_个性.pdf}
+\setSignatureScale{0.1}
+
+% ========== TITLE PAGE SETUP ==========
+\setDocType{Document Type}
+\setDocTitle{Document Title}
+\setDocSubtitle{Document Subtitle}
+\setDocAuthor{Author Name}
+\setDocDate{MM/DD/YYYY}
+
+% Title fields: 1 field
+\setTitleFieldsNumber{1}
+\setTitleFieldOne{Course}{Course Name}
+
+% Title page signature (only used in titleonly mode)
+\setTitleSignatureImage{鞠逸凡_个性.pdf}
+\setTitleSignatureScale{0.1}
+
+% ========== HEADER SETUP ==========
+\setHeaderLeft{Course Name}
+\setHeaderCenter{Document Title}
+\setHeaderRight{Date}
+
+% ========== DOCUMENT START ==========
+\begin{document}
+
+\makefrontmatter
+\setupHeaderStyle
+
+% Start writing your content here
+\section{Introduction}
+This is a minimal example using the Yifan Ju Personal Template. You can customize the cover page, title page, and header according to your needs. The table of contents is enabled in this example, so you can add sections and subsections to see it in action.
+
+\section{Code Examples}
+The template supports displaying code in multiple programming languages with syntax highlighting.
+
+\subsection{Python Example}
+\inputcode{python}{./code/hello_world.py}
+
+\subsection{Java Example}
+\inputcode{java}{./code/HelloWorld.java}
+
+\subsection{C Example}
+\inputcode{c}{./code/hello_world.c}
+
+\subsection{Haskell Example}
+\inputcode{haskell}{./code/hello_world.hs}
+
+\subsection{Racket Example}
+\inputcode{lisp}{./code/hello_world.rkt}
+
+\subsection{Prolog Example}
+\inputcode{prolog}{./code/hello_world.pl}
+
+\subsection{Quicksort Pseudocode}
+\inputcode{}{./code/quicksort.txt}
+
+\section{Mathematical Proofs}
+
+\subsection{Theorems (已有的著名定理)}
+
+\begin{theorem}
+    For any positive real numbers $a$ and $b$, the arithmetic mean is at least the geometric mean.
+\end{theorem}
+
+\begin{proof}
+    By expanding $(a-b)^2 \geq 0$, we get $a^2 + b^2 \geq 2ab$.
+    Dividing by $2ab$ yields $\frac{a+b}{2} \geq \sqrt{ab}$.
+\end{proof}
+
+\subsection{Propositions (个人结论)}
+
+\begin{proposition}
+    The square of any odd integer is congruent to 1 modulo 8.
+\end{proposition}
+
+\begin{proof}
+    Let $n = 2k+1$ be an odd integer. Then $n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 4k(k+1) + 1$.
+
+    Since $k(k+1)$ is always even, $4k(k+1) \equiv 0 \pmod{8}$, so $n^2 \equiv 1 \pmod{8}$.
+\end{proof}
+
+\subsection{Lemmas (辅助引理)}
+
+\begin{lemma}
+    For any integer $n$, either $n$ or $n+1$ is even.
+\end{lemma}
+
+\begin{prooflemma}
+    By the division algorithm, every integer is either even or odd.
+\end{prooflemma}
+
+\subsection{Claims (临时小台阶)}
+
+\begin{claim}
+    The sum of two even numbers is even.
+\end{claim}
+
+\begin{proofclaim}
+    Let $2m$ and $2n$ be two even numbers. Their sum is $2m + 2n = 2(m+n)$, which is even.
+\end{proofclaim}
+
+\section{Problem Solutions}
+
+\subsection{Question 1: Simple Calculation}
+
+\begin{solution*}
+    We need to calculate $2 + 2$. By basic arithmetic, $2 + 2 = 4$.
+\end{solution*}
+
+\subsection{Question 2: Multiple Parts}
+
+\begin{solution}
+    The value of $x$ is 5.
+\end{solution}
+
+\begin{solution}
+    Another approach using substitution shows the same result.
+\end{solution}
+
+\end{document}

@@ -1,0 +1,563 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Yifan_Ju_Personal_Template}[2026/03/25 Yifan Ju's Personal LaTeX Template]
+
+% Core packages
+\RequirePackage{amsfonts}
+\RequirePackage{tikz}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{setspace}
+\RequirePackage{mathtools}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{fullpage}
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\RequirePackage{venndiagram}
+\RequirePackage{polynom}
+\RequirePackage{listings}
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\RequirePackage{mathrsfs}
+\RequirePackage{xcolor}
+\RequirePackage{etoolbox}
+\RequirePackage{xeCJK}
+
+% Chinese font configuration
+\setCJKmainfont[BoldFont={字语潇湘行书}, ItalicFont={字语潇湘行书}]{字语潇湘行书}
+\setCJKmonofont{Menlo}
+
+% Title font - Slim gold script style
+\newCJKfontfamily\TitleFont[BoldFont={文道现代篆书}]{文道现代篆书}
+
+% Utilities
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\graphicspath{{./}}
+\let\emptyset\varnothing
+\setlength\parindent{0pt}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{16pt}
+
+% Listings config - Black and white, no syntax highlighting
+\lstset{
+    frame=shadowbox,
+    rulesepcolor=\color{gray},
+    numbers=left,
+    stepnumber=1,
+    firstnumber=0,
+    numberfirstline=true,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+% ========== CODE BOX ENVIRONMENT ==========
+% Supports multiple programming languages
+% Usage: \begin{codebox}[language]...code...\end{codebox}
+% Supported languages: python, java, c, sql, html, bash, etc.
+
+% Define codebox using lstnewenvironment with optional language parameter
+\lstnewenvironment{codebox}[1][]{%
+    \lstset{
+        language=#1,
+        frame=shadowbox,
+        rulesepcolor=\color{gray},
+        backgroundcolor=\color{white},
+        captionpos=b,
+        numbers=left,
+        stepnumber=1,
+        firstnumber=0,
+        numberfirstline=true,
+        aboveskip=3mm,
+        belowskip=3mm,
+        showstringspaces=false,
+        keepspaces=true,
+        columns=fullflexible,
+        basicstyle={\small\ttfamily},
+        numberstyle=\tiny\color{gray},
+        keywordstyle=\color{black},
+        commentstyle=\color{black},
+        stringstyle=\color{black},
+        breaklines=true,
+        breakatwhitespace=true,
+        tabsize=3
+    }%
+}{%
+}
+
+% Code input command - wrapper for \lstinputlisting
+% Usage: \inputcode{language}{filepath} or \inputcode{}{filepath} for plain text
+\newcommand{\inputcode}[2]{%
+    \lstinputlisting[
+        language=#1,
+        frame=shadowbox,
+        rulesepcolor=\color{gray},
+        numbers=left,
+        stepnumber=1,
+        firstnumber=0,
+        numberfirstline=true,
+        aboveskip=3mm,
+        belowskip=3mm,
+        showstringspaces=false,
+        columns=flexible,
+        basicstyle={\small\ttfamily},
+        numberstyle=\tiny\color{gray},
+        keywordstyle=\color{black},
+        commentstyle=\color{black},
+        stringstyle=\color{black},
+        breaklines=true,
+        breakatwhitespace=true,
+        tabsize=3
+    ]{#2}%
+}
+
+% ========== MATHEMATICAL STATEMENTS ENVIRONMENTS ==========
+% Multiple environments for different types of mathematical statements
+% Usage: \begin{theorem}...\end{theorem}, \begin{lemma}...\end{lemma}, etc.
+% Each statement type comes with its own label
+% Can be numbered like equations using * for unnumbered or default for numbered
+
+% Counters for mathematical statements
+\newcounter{theoremcounter}
+\newcounter{lemmacounter}
+\newcounter{claimcounter}
+\newcounter{corollarycounter}
+\newcounter{propositioncounter}
+\newcounter{solutioncounter}
+
+\newenvironment{theorem}{%
+    \stepcounter{theoremcounter}\vspace{0.8em}\par\noindent\textbf{Theorem \arabic{theoremcounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{theorem*}{%
+    \vspace{0.8em}\par\noindent\textbf{Theorem.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{lemma}{%
+    \stepcounter{lemmacounter}\vspace{0.8em}\par\noindent\textbf{Lemma \arabic{lemmacounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{lemma*}{%
+    \vspace{0.8em}\par\noindent\textbf{Lemma.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{claim}{%
+    \stepcounter{claimcounter}\vspace{0.8em}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{claim*}{%
+    \vspace{0.8em}\par\noindent\textbf{Claim.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{corollary}{%
+    \stepcounter{corollarycounter}\vspace{0.8em}\par\noindent\textbf{Corollary \arabic{corollarycounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{corollary*}{%
+    \vspace{0.8em}\par\noindent\textbf{Corollary.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{proposition}{%
+    \stepcounter{propositioncounter}\vspace{0.8em}\par\noindent\textbf{Proposition \arabic{propositioncounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{proposition*}{%
+    \vspace{0.8em}\par\noindent\textbf{Proposition.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+% ========== PROOF ENVIRONMENT ==========
+% Three proof environments with different QED symbols
+% Usage: 
+%   \begin{proof} ... \end{proof}           → ends with ∎ (black square, for Theorem/Proposition)
+%   \begin{prooflemma} ... \end{prooflemma} → ends with □ (hollow square, for Lemma)
+%   \begin{proofclaim} ... \end{proofclaim} → ends with □ (hollow square, for Claim)
+
+\newenvironment{proof}{%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+}{%
+    \quad$\blacksquare$\par\vspace{0.3em}
+}
+
+\newenvironment{prooflemma}{%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+}{%
+    \quad$\square$\par\vspace{0.3em}
+}
+
+\newenvironment{proofclaim}{%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+}{%
+    \quad$\square$\par\vspace{0.3em}
+}
+
+% ========== SOLUTION ENVIRONMENT ==========
+% Lightweight solution/answer environment for problem solving
+% Usage:
+%   \begin{solution} ... \end{solution}   → numbered solution
+%   \begin{solution*} ... \end{solution*} → unnumbered solution
+
+\newenvironment{solution}{%
+    \stepcounter{solutioncounter}\vspace{0.8em}\par\noindent\textbf{Solution \arabic{solutioncounter}.}%
+}{
+    \par\vspace{0.2em}
+}
+
+\newenvironment{solution*}{%
+    \vspace{0.8em}\par\noindent\textbf{Solution.}%
+}{
+    \par\vspace{0.2em}
+}
+
+% Document metadata
+\newcommand{\PersonalDocType}{Document}
+\newcommand{\PersonalDocTitle}{Untitled Document}
+\newcommand{\PersonalDocSubtitle}{}
+\newcommand{\PersonalDocAuthor}{}
+\newcommand{\PersonalDocDate}{\today}
+
+\newcommand{\setDocType}[1]{\renewcommand{\PersonalDocType}{#1}}
+\newcommand{\setDocTitle}[1]{\renewcommand{\PersonalDocTitle}{#1}}
+\newcommand{\setDocSubtitle}[1]{\renewcommand{\PersonalDocSubtitle}{#1}}
+\newcommand{\setDocAuthor}[1]{\renewcommand{\PersonalDocAuthor}{#1}}
+\newcommand{\setDocDate}[1]{\renewcommand{\PersonalDocDate}{#1}}
+
+% Title page signature
+\newcommand{\TitleSignatureFile}{}
+\newcommand{\TitleSignatureScale}{0.1}
+\newcommand{\setTitleSignatureImage}[1]{\renewcommand{\TitleSignatureFile}{graph/coverage and title/#1}}
+\newcommand{\setTitleSignatureScale}[1]{\renewcommand{\TitleSignatureScale}{#1}}
+
+% Title page fields (1-5)
+\newcommand{\TitleFieldsNumber}{0}  % Default: no additional fields
+\newcommand{\setTitleFieldsNumber}[1]{\renewcommand{\TitleFieldsNumber}{#1}}
+
+% Five customizable title fields
+\newcommand{\TitleFieldOneLabel}{}
+\newcommand{\TitleFieldOneValue}{}
+\newcommand{\TitleFieldTwoLabel}{}
+\newcommand{\TitleFieldTwoValue}{}
+\newcommand{\TitleFieldThreeLabel}{}
+\newcommand{\TitleFieldThreeValue}{}
+\newcommand{\TitleFieldFourLabel}{}
+\newcommand{\TitleFieldFourValue}{}
+\newcommand{\TitleFieldFiveLabel}{}
+\newcommand{\TitleFieldFiveValue}{}
+
+% Title field setters
+\newcommand{\setTitleFieldOne}[2]{%
+    \renewcommand{\TitleFieldOneLabel}{#1}%
+    \renewcommand{\TitleFieldOneValue}{#2}%
+}
+\newcommand{\setTitleFieldTwo}[2]{%
+    \renewcommand{\TitleFieldTwoLabel}{#1}%
+    \renewcommand{\TitleFieldTwoValue}{#2}%
+}
+\newcommand{\setTitleFieldThree}[2]{%
+    \renewcommand{\TitleFieldThreeLabel}{#1}%
+    \renewcommand{\TitleFieldThreeValue}{#2}%
+}
+\newcommand{\setTitleFieldFour}[2]{%
+    \renewcommand{\TitleFieldFourLabel}{#1}%
+    \renewcommand{\TitleFieldFourValue}{#2}%
+}
+\newcommand{\setTitleFieldFive}[2]{%
+    \renewcommand{\TitleFieldFiveLabel}{#1}%
+    \renewcommand{\TitleFieldFiveValue}{#2}%
+}
+
+\newcommand{\nonemptyorplaceholder}[1]{\ifstrempty{#1}{~}{#1}}
+
+\newcommand{\setDocumentMode}[1]{%
+    \ifstrequal{#1}{homework}{\setDocType{Homework}}{}
+    \ifstrequal{#1}{tutorial}{\setDocType{Tutorial}}{}
+    \ifstrequal{#1}{report}{\setDocType{Report}}{}
+    \ifstrequal{#1}{notes}{\setDocType{Notes}}{}
+    \ifstrequal{#1}{article}{\setDocType{Document}}{}
+}
+
+% Frontmatter layout mode
+\newif\ifCoverOnly
+\newif\ifTitleOnly
+\CoverOnlyfalse
+\TitleOnlyfalse
+
+\newcommand{\setTitleLayoutMode}[1]{%
+    \CoverOnlyfalse
+    \TitleOnlyfalse
+    \ifstrequal{#1}{coveronly}{\CoverOnlytrue}{}
+    \ifstrequal{#1}{titleonly}{\TitleOnlytrue}{}
+}
+
+\newcommand{\makepersonaltitle}{%
+    \ifTitleOnly
+        % Define a custom pagestyle for titleonly first page
+        \fancypagestyle{titlefirst}{%
+            \fancyhf{}
+            \cfoot{\textit{\thepage}}
+            \renewcommand{\headrulewidth}{0pt}
+        }
+        \thispagestyle{titlefirst}
+    \else
+        \thispagestyle{empty}  % Hide header and footer on title page
+    \fi
+    \noindent
+    \begingroup
+    \centering
+
+    \vspace{0.5cm}
+
+    % Document type (optional)
+    \ifstrempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\vspace{0.45cm}}
+
+    % Main title
+    \LARGE\textbf{{\TitleFont\nonemptyorplaceholder{\PersonalDocTitle}}}\par
+    \vspace{0.2cm}
+
+    % Subtitle (optional)
+    \ifstrempty{\PersonalDocSubtitle}{}{{\TitleFont\large\textit{\PersonalDocSubtitle}}\par\vspace{0.25cm}}
+
+    % Author and date
+    \ifstrempty{\PersonalDocAuthor}{}{\normalsize\textbf{\PersonalDocAuthor}\par\vspace{0.1cm}}
+    \ifstrempty{\PersonalDocDate}{}{\normalsize\nonemptyorplaceholder{\PersonalDocDate}\par}
+
+    \vspace{0.4cm}
+
+    % Title page fields - clean format
+    \ifnum\TitleFieldsNumber>0
+        \begin{tabular}{l@{\hspace{2cm}}l}
+            \ifnum\TitleFieldsNumber>0 \textbf{\TitleFieldOneLabel:}   & \TitleFieldOneValue      \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>1 \textbf{\TitleFieldTwoLabel:}   & \TitleFieldTwoValue      \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>2 \textbf{\TitleFieldThreeLabel:} & \TitleFieldThreeValue    \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>3 \textbf{\TitleFieldFourLabel:}  & \TitleFieldFourValue     \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>4 \textbf{\TitleFieldFiveLabel:}  & \TitleFieldFiveValue \fi
+        \end{tabular}\par
+    \fi
+
+    \vspace{0.6cm}
+
+    % Title page signature (right aligned, between fields and bottom line)
+    % Only show signature in title-only mode
+    \ifTitleOnly
+        \ifstrempty{\TitleSignatureFile}{}{%
+            \IfFileExists{\TitleSignatureFile}{%
+                \hfill \includegraphics[scale=\TitleSignatureScale]{\TitleSignatureFile} \hspace{0.8cm} \par
+            }{}%
+        }
+    \fi
+
+    \vspace{0.1cm}
+    \hrulefill
+    \vspace{0.8cm}
+
+    \endgroup
+}
+
+% Info box environment
+\newenvironment{infobox}[1][Info]{%
+    \begin{center}
+        \begin{tabular}{|p{0.92\linewidth}|}
+            \hline
+            \textbf{#1} \\
+            }{%
+            \\\hline
+        \end{tabular}
+    \end{center}
+}
+
+% ========== COVER FIELDS (5 fields: label-value pairs) ==========
+\newcommand{\CoverSeasonYear}{Season Year}
+\newcommand{\CoverTitle}{Course Summary}
+\newcommand{\CoverCourse}{Course Code - Course Name}
+
+\newcommand{\CoverSchoolLogoFile}{graph/coverage and title/UTSC.png}
+\newcommand{\CoverSchoolLogoScale}{0.15}
+
+\newcommand{\CoverSignatureFile}{graph/coverage and title/鞠逸凡.png}
+\newcommand{\CoverSignatureScale}{0.03}
+
+% Fields number control (1-5)
+\newcommand{\CoverFieldsNumber}{0}  % Default: no fields
+\newcommand{\setCoverFieldsNumber}[1]{\renewcommand{\CoverFieldsNumber}{#1}}
+
+% Five customizable fields
+\newcommand{\CoverFieldOneLabel}{}
+\newcommand{\CoverFieldOneValue}{}
+\newcommand{\CoverFieldTwoLabel}{}
+\newcommand{\CoverFieldTwoValue}{}
+\newcommand{\CoverFieldThreeLabel}{}
+\newcommand{\CoverFieldThreeValue}{}
+\newcommand{\CoverFieldFourLabel}{}
+\newcommand{\CoverFieldFourValue}{}
+\newcommand{\CoverFieldFiveLabel}{}
+\newcommand{\CoverFieldFiveValue}{}
+
+% Setters
+\newcommand{\setCoverSeasonYear}[1]{\renewcommand{\CoverSeasonYear}{#1}}
+\newcommand{\setCoverTitle}[1]{\renewcommand{\CoverTitle}{#1}}
+\newcommand{\setCoverCourse}[1]{\renewcommand{\CoverCourse}{#1}}
+
+\newcommand{\setSchoolLogo}[1]{\renewcommand{\CoverSchoolLogoFile}{graph/coverage and title/#1}}
+\newcommand{\setSchoolLogoScale}[1]{\renewcommand{\CoverSchoolLogoScale}{#1}}
+
+\newcommand{\setSignatureImage}[1]{\renewcommand{\CoverSignatureFile}{graph/coverage and title/#1}}
+\newcommand{\setSignatureScale}[1]{\renewcommand{\CoverSignatureScale}{#1}}
+
+% Set field pairs: label, value
+\newcommand{\setCoverFieldOne}[2]{%
+    \renewcommand{\CoverFieldOneLabel}{#1}%
+    \renewcommand{\CoverFieldOneValue}{#2}%
+}
+
+\newcommand{\setCoverFieldTwo}[2]{%
+    \renewcommand{\CoverFieldTwoLabel}{#1}%
+    \renewcommand{\CoverFieldTwoValue}{#2}%
+}
+
+\newcommand{\setCoverFieldThree}[2]{%
+    \renewcommand{\CoverFieldThreeLabel}{#1}%
+    \renewcommand{\CoverFieldThreeValue}{#2}%
+}
+
+\newcommand{\setCoverFieldFour}[2]{%
+    \renewcommand{\CoverFieldFourLabel}{#1}%
+    \renewcommand{\CoverFieldFourValue}{#2}%
+}
+
+\newcommand{\setCoverFieldFive}[2]{%
+    \renewcommand{\CoverFieldFiveLabel}{#1}%
+    \renewcommand{\CoverFieldFiveValue}{#2}%
+}
+
+% ========== HEADER FIELDS ==========
+\newcommand{\HeaderLeft}{}
+\newcommand{\HeaderCenter}{}
+\newcommand{\HeaderRight}{}
+
+\newcommand{\setHeaderLeft}[1]{\renewcommand{\HeaderLeft}{#1}}
+\newcommand{\setHeaderCenter}[1]{\renewcommand{\HeaderCenter}{#1}}
+\newcommand{\setHeaderRight}[1]{\renewcommand{\HeaderRight}{#1}}
+
+\newcommand{\setupHeaderStyle}{%
+    \pagestyle{fancy}
+    \fancyhf{}
+    \lhead{\HeaderLeft}
+    \chead{\HeaderCenter}
+    \rhead{\HeaderRight}
+    \cfoot{\textit{\thepage}}
+}
+
+% ========== COVER PAGE ==========
+\newcommand{\makecustomcover}{%
+    \begin{titlepage}
+        \thispagestyle{empty}  % Hide page number on cover page
+        \begin{center}
+            \vspace{1.5cm}
+
+            \ifstrempty{\CoverSeasonYear}{}{\nonemptyorplaceholder{\CoverSeasonYear}\par}
+
+            \vspace{0.6cm}
+
+            \hrulefill
+
+            \vspace{0.3cm}
+
+            \ifstrempty{\CoverTitle}{}{\huge\textbf{{\TitleFont\nonemptyorplaceholder{\CoverTitle}}}\par}
+
+            \vspace{0.7cm}
+
+            \ifstrempty{\CoverCourse}{}{\LARGE\textbf{{\TitleFont\nonemptyorplaceholder{\CoverCourse}}}\par}
+
+            \vspace{0.2cm}
+
+            \hrulefill
+
+            \vspace{1.8cm}
+
+            \ifstrempty{\CoverSchoolLogoFile}{}{%
+                \IfFileExists{\CoverSchoolLogoFile}{%
+                    \includegraphics[trim={0 0 0.1cm 0},clip,scale=\CoverSchoolLogoScale]{\CoverSchoolLogoFile}%
+                }{}
+            }
+
+            \vspace{2cm}
+        \end{center}
+
+        \vfill
+
+        % Fields table - display based on CoverFieldsNumber
+        \begin{center}
+            \ifnum\CoverFieldsNumber>0
+                \begin{tabular}{l@{\hspace{1.5cm}}l}
+                    \ifnum\CoverFieldsNumber>0 \textbf{\CoverFieldOneLabel:}   & \CoverFieldOneValue      \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>1 \textbf{\CoverFieldTwoLabel:}   & \CoverFieldTwoValue      \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>2 \textbf{\CoverFieldThreeLabel:} & \CoverFieldThreeValue    \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>3 \textbf{\CoverFieldFourLabel:}  & \CoverFieldFourValue     \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>4 \textbf{\CoverFieldFiveLabel:}  & \CoverFieldFiveValue \fi
+                \end{tabular}
+            \fi
+        \end{center}
+
+        \vspace{1.5cm}
+
+        % Signature
+        \ifstrempty{\CoverSignatureFile}{}{%
+            \IfFileExists{\CoverSignatureFile}{%
+                \hfill \includegraphics[scale=\CoverSignatureScale]{\CoverSignatureFile} \hspace{0.8cm}%
+            }{}
+        }
+    \end{titlepage}
+}
+
+% ========== FRONTMATTER ENTRYPOINT ==========
+% Order:
+% - CoverOnly: Cover page -> Table of Contents -> content on new page
+% - TitleOnly: Title page -> content continues on same page (no TOC)
+\newcommand{\makefrontmatter}{%
+    \ifCoverOnly
+        \makecustomcover
+        \newpage
+        % Table of contents for cover only mode
+        \pagenumbering{roman}  % Use lowercase roman numerals for frontmatter
+        \pagestyle{fancy}
+        \fancyhf{}
+        \cfoot{\textit{\thepage}}
+        \tableofcontents
+        \newpage
+        \pagenumbering{arabic}  % Switch to arabic numerals for main content
+        \setcounter{page}{1}     % Reset page number to 1
+    \fi
+    \ifTitleOnly
+        \makepersonaltitle
+    \fi
+}

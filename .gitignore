@@ -1,0 +1,31 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+
+# VS Code personal settings
+.vscode/
+
+# LaTeX compilation outputs
+out/
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+
+# Personal/sensitive files
+# Signature and personal images
+graph/coverage\ and\ title/鞠逸凡*.pdf
+graph/coverage\ and\ title/*签名*
+
+# Build directories
+build/
+dist/
