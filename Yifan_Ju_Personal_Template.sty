@@ -468,13 +468,24 @@
 \newcommand{\setHeaderCenter}[1]{\renewcommand{\HeaderCenter}{#1}}
 \newcommand{\setHeaderRight}[1]{\renewcommand{\HeaderRight}{#1}}
 
-\newcommand{\setupHeaderStyle}{%
-    \pagestyle{fancy}
+% Pre-define page styles to avoid multiple \pagestyle{fancy} calls
+\fancypagestyle{maincontent}{%
     \fancyhf{}
     \lhead{\HeaderLeft}
     \chead{\HeaderCenter}
     \rhead{\HeaderRight}
     \cfoot{\textit{\thepage}}
+    \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\fancypagestyle{tocpage}{%
+    \fancyhf{}
+    \cfoot{\textit{\thepage}}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\newcommand{\setupHeaderStyle}{%
+    \pagestyle{maincontent}
 }
 
 % ========== COVER PAGE ==========
@@ -549,13 +560,12 @@
         \newpage
         % Table of contents for cover only mode
         \pagenumbering{roman}  % Use lowercase roman numerals for frontmatter
-        \pagestyle{fancy}
-        \fancyhf{}
-        \cfoot{\textit{\thepage}}
+        \pagestyle{tocpage}    % Use pre-defined tocpage style
         \tableofcontents
         \newpage
         \pagenumbering{arabic}  % Switch to arabic numerals for main content
         \setcounter{page}{1}     % Reset page number to 1
+        \pagestyle{maincontent} % Switch to pre-defined main content style
     \fi
     \ifTitleOnly
         \makepersonaltitle
