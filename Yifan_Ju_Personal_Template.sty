@@ -10,7 +10,8 @@
 \RequirePackage{mathtools}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
-\RequirePackage{fullpage}
+\RequirePackage{geometry}
+\geometry{margin=1in}
 \RequirePackage{graphicx}
 \RequirePackage{caption}
 \RequirePackage{venndiagram}
@@ -556,6 +557,7 @@
 % - TitleOnly: Title page -> content continues on same page (no TOC)
 \newcommand{\makefrontmatter}{%
     \ifCoverOnly
+        \pagenumbering{gobble}  % Suppress page numbering for cover page
         \makecustomcover
         \newpage
         % Table of contents for cover only mode
@@ -568,6 +570,7 @@
         \pagestyle{maincontent} % Switch to pre-defined main content style
     \fi
     \ifTitleOnly
+        \pagenumbering{gobble}  % Suppress page numbering for title page
         \makepersonaltitle
     \fi
 }
