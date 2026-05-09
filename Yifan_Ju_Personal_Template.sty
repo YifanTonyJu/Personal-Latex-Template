@@ -9,7 +9,6 @@
 \RequirePackage{setspace}
 \RequirePackage{mathtools}
 \RequirePackage{fancyhdr}
-\RequirePackage{lastpage}
 \RequirePackage{geometry}
 \geometry{margin=1in}
 \RequirePackage{graphicx}
@@ -20,6 +19,7 @@
 \RequirePackage{float}
 \RequirePackage{booktabs}
 \RequirePackage{hyperref}
+\RequirePackage{lastpage}
 \RequirePackage{bookmark}
 \RequirePackage{mathrsfs}
 \RequirePackage{xcolor}
@@ -136,6 +136,7 @@
 \newcounter{claimcounter}
 \newcounter{corollarycounter}
 \newcounter{propositioncounter}
+\newcounter{definitioncounter}
 \newcounter{solutioncounter}
 
 \newenvironment{theorem}{%
@@ -194,6 +195,18 @@
 
 \newenvironment{proposition*}{%
     \vspace{0.8em}\par\noindent\textbf{Proposition.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{definition}{%
+    \stepcounter{definitioncounter}\vspace{0.8em}\par\noindent\textbf{Definition \arabic{definitioncounter}.}\itshape
+}{%
+    \par\vspace{0.2em}
+}
+
+\newenvironment{definition*}{%
+    \vspace{0.8em}\par\noindent\textbf{Definition.}\itshape
 }{%
     \par\vspace{0.2em}
 }
@@ -573,5 +586,8 @@
     \ifTitleOnly
         \pagenumbering{gobble}  % Suppress page numbering for title page
         \makepersonaltitle
+        \pagenumbering{arabic}  % Switch to arabic numerals for main content
+        \setcounter{page}{1}     % Reset page number to 1
+        \pagestyle{maincontent} % Switch to pre-defined main content style
     \fi
 }

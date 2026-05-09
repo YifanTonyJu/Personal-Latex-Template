@@ -119,52 +119,23 @@ xelatex -output-directory=out my-homework.tex
 
 ## 数学环境
 
-### 定理、引理、命题
-
-模板提供多种数学陈述环境：
-
-```latex
-\begin{theorem}
-    内容...
-\end{theorem}
-
-\begin{proof}
-    证明...
-\end{proof}
-```
-
-**支持的环境**：`theorem` | `lemma` | `claim` | `proposition`
-
-**非编号版本**（加星号）：
-```latex
-\begin{theorem*} ... \end{theorem*}
-\begin{lemma*} ... \end{lemma*}
-\begin{claim*} ... \end{claim*}
-```
+模板提供多种数学陈述环境：`theorem` | `lemma` | `claim` | `proposition` | `definition`
 
 **环境说明**：
 - **Theorem**：主要定理，重要结论
 - **Lemma**：辅助引理，用于证明其他结论
 - **Claim**：临时小台阶，用于逐步推导或中间步骤
 - **Proposition**：个人结论或观察
+- **Definition**：术语、概念或对象的正式定义
+
+支持编号版本和非编号版本（加星号 `*`）。
 
 **证明结束符号**：
-- Theorem / Proposition 用 ∎（黑方块，用 `\begin{proof}..\end{proof}`）
-- Lemma / Claim 用 □（空心方块，用 `\begin{prooflemma}..\end{prooflemma}` 或 `\begin{proofclaim}..\end{proofclaim}`）
+- Theorem / Proposition 用 ∎（黑方块）
+- Lemma / Claim 用 □（空心方块）
+- Definition 无证明结束符号
 
-### 解答环境
-
-用于简单答案和问题解答（不添加结束符号）。
-
-```latex
-\begin{solution}
-    多题时使用，自动编号
-\end{solution}
-
-\begin{solution*}
-    单题时使用，无编号
-\end{solution*}
-```
+另提供 `solution` 环境用于解答（支持编号和非编号版本）。
 
 ---
 
@@ -198,3 +169,4 @@ xelatex -output-directory=out my-homework.tex
 ```
 
 ---
+详细的使用示例请查看 `minimal-example.tex`。
