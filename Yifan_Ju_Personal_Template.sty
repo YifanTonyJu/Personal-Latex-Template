@@ -386,7 +386,7 @@
     \ifTitleOnly
         \ifstrempty{\TitleSignatureFile}{}{%
             \IfFileExists{\TitleSignatureFile}{%
-                \hfill \includegraphics[scale=\TitleSignatureScale]{\TitleSignatureFile} \hspace{0.8cm} \par
+                \hfill \includegraphics[scale=\TitleSignatureScale]{\TitleSignatureFile} \hspace{0.3cm} \par
             }{}%
         }
     \fi
@@ -419,7 +419,7 @@
 \newcommand{\CoverSchoolLogoScale}{0.15}
 
 \newcommand{\CoverSignatureFile}{graph/coverage and title/鞠逸凡.png}
-\newcommand{\CoverSignatureScale}{0.03}
+\newcommand{\CoverSignatureScale}{0.1}
 
 % Fields number control (1-5)
 \newcommand{\CoverFieldsNumber}{0}  % Default: no fields
@@ -559,7 +559,7 @@
         % Signature
         \ifstrempty{\CoverSignatureFile}{}{%
             \IfFileExists{\CoverSignatureFile}{%
-                \hfill \includegraphics[scale=\CoverSignatureScale]{\CoverSignatureFile} \hspace{0.8cm}%
+                \hfill \includegraphics[scale=\CoverSignatureScale]{\CoverSignatureFile} \hspace{0.3cm}%
             }{}
         }
     \end{titlepage}
