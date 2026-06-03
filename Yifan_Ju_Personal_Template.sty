@@ -353,23 +353,23 @@
     \vspace{0.5cm}
 
     % Document type (optional)
-    \ifstrempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\vspace{0.45cm}}
+    \ifstrempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\vspace{0.5cm}}
 
     % Main title
     \LARGE\textbf{{\TitleFont\nonemptyorplaceholder{\PersonalDocTitle}}}\par
-    \vspace{0.2cm}
+    \vspace{0.35cm}
 
     % Subtitle (optional)
-    \ifstrempty{\PersonalDocSubtitle}{}{{\TitleFont\large\textit{\PersonalDocSubtitle}}\par\vspace{0.25cm}}
+    \ifstrempty{\PersonalDocSubtitle}{}{{\TitleFont\large\textit{\PersonalDocSubtitle}}\par\vspace{0.4cm}}
 
     % Author and date
     \ifstrempty{\PersonalDocAuthor}{}{\normalsize\textbf{\PersonalDocAuthor}\par\vspace{0.1cm}}
     \ifstrempty{\PersonalDocDate}{}{\normalsize\nonemptyorplaceholder{\PersonalDocDate}\par}
 
-    \vspace{0.4cm}
-
-    % Title page fields - clean format
+    % Conditional spacing: more space if fields exist, less if not
     \ifnum\TitleFieldsNumber>0
+        \vspace{0.4cm}
+        % Title page fields - clean format
         \begin{tabular}{l@{\hspace{2cm}}l}
             \ifnum\TitleFieldsNumber>0 \textbf{\TitleFieldOneLabel:}   & \TitleFieldOneValue      \\ [0.3cm] \fi
             \ifnum\TitleFieldsNumber>1 \textbf{\TitleFieldTwoLabel:}   & \TitleFieldTwoValue      \\ [0.3cm] \fi
@@ -377,9 +377,10 @@
             \ifnum\TitleFieldsNumber>3 \textbf{\TitleFieldFourLabel:}  & \TitleFieldFourValue     \\ [0.3cm] \fi
             \ifnum\TitleFieldsNumber>4 \textbf{\TitleFieldFiveLabel:}  & \TitleFieldFiveValue \fi
         \end{tabular}\par
+        \vspace{0.35cm}
+    \else
+        \vspace{0.2cm}
     \fi
-
-    \vspace{0.6cm}
 
     % Title page signature (right aligned, between fields and bottom line)
     % Only show signature in title-only mode
