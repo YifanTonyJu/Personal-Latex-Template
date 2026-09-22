@@ -139,6 +139,7 @@
 \newcounter{propositioncounter}
 \newcounter{definitioncounter}
 \newcounter{solutioncounter}
+\newcounter{problemcounter}
 
 \newenvironment{theorem}{%
     \stepcounter{theoremcounter}\vspace{0.8em}\par\noindent\textbf{Theorem \arabic{theoremcounter}.}\itshape
@@ -251,6 +252,24 @@
 
 \newenvironment{solution*}{%
     \vspace{0.8em}\par\noindent\textbf{Solution.}%
+}{
+    \par\vspace{0.2em}
+}
+
+% ========== PROBLEM ENVIRONMENT ==========
+% Problem environment for stating problems/exercises
+% Usage:
+%   \begin{problem} ... \end{problem}   → numbered problem
+%   \begin{problem*} ... \end{problem*} → unnumbered problem
+
+\newenvironment{problem}{%
+    \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}%
+}{
+    \par\vspace{0.2em}
+}
+
+\newenvironment{problem*}{%
+    \vspace{0.8em}\par\noindent\textbf{Problem.}%
 }{
     \par\vspace{0.2em}
 }
