@@ -142,73 +142,73 @@
 \newcounter{problemcounter}
 
 \newenvironment{theorem}{%
-    \stepcounter{theoremcounter}\vspace{0.8em}\par\noindent\textbf{Theorem \arabic{theoremcounter}.}\itshape
+    \stepcounter{theoremcounter}\vspace{0.8em}\par\noindent\textbf{Theorem \arabic{theoremcounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{theorem*}{%
-    \vspace{0.8em}\par\noindent\textbf{Theorem.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Theorem.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{lemma}{%
-    \stepcounter{lemmacounter}\vspace{0.8em}\par\noindent\textbf{Lemma \arabic{lemmacounter}.}\itshape
+    \stepcounter{lemmacounter}\vspace{0.8em}\par\noindent\textbf{Lemma \arabic{lemmacounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{lemma*}{%
-    \vspace{0.8em}\par\noindent\textbf{Lemma.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Lemma.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{claim}{%
-    \stepcounter{claimcounter}\vspace{0.8em}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape
+    \stepcounter{claimcounter}\vspace{0.8em}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{claim*}{%
-    \vspace{0.8em}\par\noindent\textbf{Claim.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Claim.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{corollary}{%
-    \stepcounter{corollarycounter}\vspace{0.8em}\par\noindent\textbf{Corollary \arabic{corollarycounter}.}\itshape
+    \stepcounter{corollarycounter}\vspace{0.8em}\par\noindent\textbf{Corollary \arabic{corollarycounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{corollary*}{%
-    \vspace{0.8em}\par\noindent\textbf{Corollary.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Corollary.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{proposition}{%
-    \stepcounter{propositioncounter}\vspace{0.8em}\par\noindent\textbf{Proposition \arabic{propositioncounter}.}\itshape
+    \stepcounter{propositioncounter}\vspace{0.8em}\par\noindent\textbf{Proposition \arabic{propositioncounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{proposition*}{%
-    \vspace{0.8em}\par\noindent\textbf{Proposition.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Proposition.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{definition}{%
-    \stepcounter{definitioncounter}\vspace{0.8em}\par\noindent\textbf{Definition \arabic{definitioncounter}.}\itshape
+    \stepcounter{definitioncounter}\vspace{0.8em}\par\noindent\textbf{Definition \arabic{definitioncounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
 
 \newenvironment{definition*}{%
-    \vspace{0.8em}\par\noindent\textbf{Definition.}\itshape
+    \vspace{0.8em}\par\noindent\textbf{Definition.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par\vspace{0.2em}
 }
@@ -221,19 +221,19 @@
 %   \begin{proofclaim} ... \end{proofclaim} → ends with □ (hollow square, for Claim)
 
 \newenvironment{proof}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
 }{%
     \quad$\blacksquare$\par\vspace{0.3em}
 }
 
 \newenvironment{prooflemma}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
 }{%
     \quad$\square$\par\vspace{0.3em}
 }
 
 \newenvironment{proofclaim}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}%
+    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
 }{%
     \quad$\square$\par\vspace{0.3em}
 }
@@ -245,13 +245,13 @@
 %   \begin{solution*} ... \end{solution*} → unnumbered solution
 
 \newenvironment{solution}{%
-    \stepcounter{solutioncounter}\vspace{0.8em}\par\noindent\textbf{Solution \arabic{solutioncounter}.}%
+    \stepcounter{solutioncounter}\vspace{0.8em}\par\noindent\textbf{Solution \arabic{solutioncounter}.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
 
 \newenvironment{solution*}{%
-    \vspace{0.8em}\par\noindent\textbf{Solution.}%
+    \vspace{0.8em}\par\noindent\textbf{Solution.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
@@ -263,13 +263,13 @@
 %   \begin{problem*} ... \end{problem*} → unnumbered problem
 
 \newenvironment{problem}{%
-    \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}%
+    \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
 
 \newenvironment{problem*}{%
-    \vspace{0.8em}\par\noindent\textbf{Problem.}%
+    \vspace{0.8em}\par\noindent\textbf{Problem.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
