@@ -25,6 +25,7 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{xcolor}
 \RequirePackage{etoolbox}
+\RequirePackage{enumitem}
 \RequirePackage{xeCJK}
 
 % Chinese font configuration
@@ -42,6 +43,9 @@
 \setlength\parindent{0pt}
 \setlength{\headheight}{12pt}
 \setlength{\headsep}{16pt}
+
+% List environments configuration - uniform parskip
+\setlist[itemize,enumerate,description]{parsep=0pt}
 
 % Listings config - Black and white, no syntax highlighting
 \lstset{
