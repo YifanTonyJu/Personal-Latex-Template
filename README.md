@@ -35,6 +35,7 @@ xelatex -output-directory=out my-homework.tex
 \setCoverFieldOne{标签}{内容}
 \setCoverFieldTwo{标签}{内容}
 ```
+每个字段以“**标签:** 内容”为一行整体居中，冒号后只留一个空格。
 
 ### 封面页图片设置
 ```latex
@@ -58,6 +59,8 @@ xelatex -output-directory=out my-homework.tex
 \setTitleFieldOne{标签}{内容}
 \setTitleFieldTwo{标签}{内容}
 ```
+标题页的类型、标题、副标题、作者和日期可设为 `{}` 隐藏；未填写的项目不会留下空行或额外间距。
+标题页的额外字段同样按“**标签:** 内容”逐行整体居中。
 
 ### 页眉设置
 ```latex

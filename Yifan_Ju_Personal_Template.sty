@@ -290,6 +290,7 @@
 \newcommand{\setDocSubtitle}[1]{\renewcommand{\PersonalDocSubtitle}{#1}}
 \newcommand{\setDocAuthor}[1]{\renewcommand{\PersonalDocAuthor}{#1}}
 \newcommand{\setDocDate}[1]{\renewcommand{\PersonalDocDate}{#1}}
+\newlength{\personalTitleGap}
 
 % Title page signature
 \newcommand{\TitleSignatureFile}{}
@@ -375,31 +376,46 @@
     \centering
 
     \vspace{0.5cm}
+    \setlength{\personalTitleGap}{0pt}
 
     % Document type (optional)
-    \ifstrempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\vspace{0.5cm}}
+    \ifdefempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\setlength{\personalTitleGap}{0.1cm}}
 
-    % Main title
-    \LARGE\textbf{{\TitleFont\nonemptyorplaceholder{\PersonalDocTitle}}}\par
-    \vspace{0.35cm}
+    % Main title (optional)
+    \ifdefempty{\PersonalDocTitle}{}{%
+        \vspace{\personalTitleGap}
+        \LARGE\textbf{{\TitleFont\PersonalDocTitle}}\par
+        \setlength{\personalTitleGap}{0.35cm}%
+    }
 
     % Subtitle (optional)
-    \ifstrempty{\PersonalDocSubtitle}{}{{\TitleFont\large\textit{\PersonalDocSubtitle}}\par\vspace{0.4cm}}
+    \ifdefempty{\PersonalDocSubtitle}{}{%
+        \vspace{\personalTitleGap}
+        {\TitleFont\large\textit{\PersonalDocSubtitle}}\par
+        \setlength{\personalTitleGap}{0.4cm}%
+    }
 
     % Author and date
-    \ifstrempty{\PersonalDocAuthor}{}{\normalsize\textbf{\PersonalDocAuthor}\par\vspace{0.1cm}}
-    \ifstrempty{\PersonalDocDate}{}{\normalsize\nonemptyorplaceholder{\PersonalDocDate}\par}
+    \ifdefempty{\PersonalDocAuthor}{}{%
+        \vspace{\personalTitleGap}
+        \normalsize\textbf{\PersonalDocAuthor}\par
+        \setlength{\personalTitleGap}{0.1cm}%
+    }
+    \ifdefempty{\PersonalDocDate}{}{%
+        \vspace{\personalTitleGap}
+        \normalsize\PersonalDocDate\par
+    }
 
     % Conditional spacing: more space if fields exist, less if not
     \ifnum\TitleFieldsNumber>0
         \vspace{0.4cm}
-        % Title page fields - clean format
-        \begin{tabular}{l@{\hspace{2cm}}l}
-            \ifnum\TitleFieldsNumber>0 \textbf{\TitleFieldOneLabel:}   & \TitleFieldOneValue      \\ [0.3cm] \fi
-            \ifnum\TitleFieldsNumber>1 \textbf{\TitleFieldTwoLabel:}   & \TitleFieldTwoValue      \\ [0.3cm] \fi
-            \ifnum\TitleFieldsNumber>2 \textbf{\TitleFieldThreeLabel:} & \TitleFieldThreeValue    \\ [0.3cm] \fi
-            \ifnum\TitleFieldsNumber>3 \textbf{\TitleFieldFourLabel:}  & \TitleFieldFourValue     \\ [0.3cm] \fi
-            \ifnum\TitleFieldsNumber>4 \textbf{\TitleFieldFiveLabel:}  & \TitleFieldFiveValue \fi
+        % Center each label-value pair as a single line
+        \begin{tabular}{c}
+            \ifnum\TitleFieldsNumber>0 \textbf{\TitleFieldOneLabel:}\ \TitleFieldOneValue \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>1 \textbf{\TitleFieldTwoLabel:}\ \TitleFieldTwoValue \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>2 \textbf{\TitleFieldThreeLabel:}\ \TitleFieldThreeValue \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>3 \textbf{\TitleFieldFourLabel:}\ \TitleFieldFourValue \\ [0.3cm] \fi
+            \ifnum\TitleFieldsNumber>4 \textbf{\TitleFieldFiveLabel:}\ \TitleFieldFiveValue \fi
         \end{tabular}\par
         \vspace{0.35cm}
     \else
@@ -409,7 +425,7 @@
     % Title page signature (right aligned, between fields and bottom line)
     % Only show signature in title-only mode
     \ifTitleOnly
-        \ifstrempty{\TitleSignatureFile}{}{%
+        \ifdefempty{\TitleSignatureFile}{}{%
             \IfFileExists{\TitleSignatureFile}{%
                 \hfill \includegraphics[scale=\TitleSignatureScale]{\TitleSignatureFile} \hspace{0.3cm} \par
             }{}%
@@ -566,15 +582,15 @@
 
         \vfill
 
-        % Fields table - display based on CoverFieldsNumber
+        % Fields - center each label-value pair as a single line
         \begin{center}
             \ifnum\CoverFieldsNumber>0
-                \begin{tabular}{l@{\hspace{1.5cm}}l}
-                    \ifnum\CoverFieldsNumber>0 \textbf{\CoverFieldOneLabel:}   & \CoverFieldOneValue      \\ [0.4cm] \fi
-                    \ifnum\CoverFieldsNumber>1 \textbf{\CoverFieldTwoLabel:}   & \CoverFieldTwoValue      \\ [0.4cm] \fi
-                    \ifnum\CoverFieldsNumber>2 \textbf{\CoverFieldThreeLabel:} & \CoverFieldThreeValue    \\ [0.4cm] \fi
-                    \ifnum\CoverFieldsNumber>3 \textbf{\CoverFieldFourLabel:}  & \CoverFieldFourValue     \\ [0.4cm] \fi
-                    \ifnum\CoverFieldsNumber>4 \textbf{\CoverFieldFiveLabel:}  & \CoverFieldFiveValue \fi
+                \begin{tabular}{c}
+                    \ifnum\CoverFieldsNumber>0 \textbf{\CoverFieldOneLabel:}\ \CoverFieldOneValue \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>1 \textbf{\CoverFieldTwoLabel:}\ \CoverFieldTwoValue \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>2 \textbf{\CoverFieldThreeLabel:}\ \CoverFieldThreeValue \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>3 \textbf{\CoverFieldFourLabel:}\ \CoverFieldFourValue \\ [0.4cm] \fi
+                    \ifnum\CoverFieldsNumber>4 \textbf{\CoverFieldFiveLabel:}\ \CoverFieldFiveValue \fi
                 \end{tabular}
             \fi
         \end{center}
