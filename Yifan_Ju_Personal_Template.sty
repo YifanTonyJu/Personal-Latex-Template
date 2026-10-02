@@ -379,27 +379,27 @@
     \setlength{\personalTitleGap}{0pt}
 
     % Document type (optional)
-    \ifdefempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\setlength{\personalTitleGap}{0.1cm}}
+    \ifdefempty{\PersonalDocType}{}{\small\textsc{\PersonalDocType}\par\setlength{\personalTitleGap}{0.2cm}}
 
     % Main title (optional)
     \ifdefempty{\PersonalDocTitle}{}{%
         \vspace{\personalTitleGap}
         \LARGE\textbf{{\TitleFont\PersonalDocTitle}}\par
-        \setlength{\personalTitleGap}{0.35cm}%
+        \setlength{\personalTitleGap}{0.2cm}%
     }
 
     % Subtitle (optional)
     \ifdefempty{\PersonalDocSubtitle}{}{%
         \vspace{\personalTitleGap}
         {\TitleFont\large\textit{\PersonalDocSubtitle}}\par
-        \setlength{\personalTitleGap}{0.4cm}%
+        \setlength{\personalTitleGap}{0.2cm}%
     }
 
     % Author and date
     \ifdefempty{\PersonalDocAuthor}{}{%
         \vspace{\personalTitleGap}
         \normalsize\textbf{\PersonalDocAuthor}\par
-        \setlength{\personalTitleGap}{0.1cm}%
+        \setlength{\personalTitleGap}{0.2cm}%
     }
     \ifdefempty{\PersonalDocDate}{}{%
         \vspace{\personalTitleGap}
@@ -408,7 +408,7 @@
 
     % Conditional spacing: more space if fields exist, less if not
     \ifnum\TitleFieldsNumber>0
-        \vspace{0.4cm}
+        \vspace{0.2cm}
         % Center each label-value pair as a single line
         \begin{tabular}{c}
             \ifnum\TitleFieldsNumber>0 \textbf{\TitleFieldOneLabel:}\ \TitleFieldOneValue \\ [0.3cm] \fi
@@ -417,7 +417,7 @@
             \ifnum\TitleFieldsNumber>3 \textbf{\TitleFieldFourLabel:}\ \TitleFieldFourValue \\ [0.3cm] \fi
             \ifnum\TitleFieldsNumber>4 \textbf{\TitleFieldFiveLabel:}\ \TitleFieldFiveValue \fi
         \end{tabular}\par
-        \vspace{0.35cm}
+        \vspace{0.2cm}
     \else
         \vspace{0.2cm}
     \fi
