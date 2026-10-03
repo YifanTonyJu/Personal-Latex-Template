@@ -10,6 +10,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{fancyhdr}
 \RequirePackage{geometry}
+\RequirePackage{amsthm}
 \geometry{margin=1in}
 \RequirePackage{graphicx}
 \RequirePackage{caption}
@@ -219,27 +220,42 @@
 
 % ========== PROOF ENVIRONMENT ==========
 % Three proof environments with different QED symbols
+% Uses amsthm's QED handling for proper positioning
 % Usage: 
 %   \begin{proof} ... \end{proof}           → ends with ∎ (black square, for Theorem/Proposition)
 %   \begin{prooflemma} ... \end{prooflemma} → ends with □ (hollow square, for Lemma)
 %   \begin{proofclaim} ... \end{proofclaim} → ends with □ (hollow square, for Claim)
+%   Use \qedhere inside displayed equations to place QED on the equation line
 
-\newenvironment{proof}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+% Custom QED symbols for each proof type
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\qedsymbollemma}{$\square$}
+\newcommand{\qedsymbolclaim}{$\square$}
+
+% Redefine proof using amsthm's \proof template with custom styling
+\renewenvironment{proof}[1][\proofname]{%
+    \vspace{0.5em}\pushQED{\qed}%
+    \par\noindent\textbf{#1.}\setlength{\parskip}{0em}%
 }{%
-    \par\noindent\hfill$\blacksquare$\par\vspace{0.3em}
+    \popQED\par\vspace{0.3em}
 }
 
 \newenvironment{prooflemma}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \vspace{0.5em}\pushQED{\qed}%
+    \par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \renewcommand{\qedsymbol}{\qedsymbollemma}%
 }{%
-    \par\noindent\hfill$\square$\par\vspace{0.3em}
+    \renewcommand{\qedsymbol}{$\blacksquare$}%
+    \popQED\par\vspace{0.3em}
 }
 
 \newenvironment{proofclaim}{%
-    \vspace{0.5em}\par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \vspace{0.5em}\pushQED{\qed}%
+    \par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \renewcommand{\qedsymbol}{\qedsymbolclaim}%
 }{%
-    \par\noindent\hfill$\square$\par\vspace{0.3em}
+    \renewcommand{\qedsymbol}{$\blacksquare$}%
+    \popQED\par\vspace{0.3em}
 }
 
 % ========== SOLUTION ENVIRONMENT ==========
