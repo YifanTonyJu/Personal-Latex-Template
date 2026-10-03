@@ -220,42 +220,67 @@
 
 % ========== PROOF ENVIRONMENT ==========
 % Three proof environments with different QED symbols
-% Uses amsthm's QED handling for proper positioning
-% Usage: 
-%   \begin{proof} ... \end{proof}           → ends with ∎ (black square, for Theorem/Proposition)
-%   \begin{prooflemma} ... \end{prooflemma} → ends with □ (hollow square, for Lemma)
-%   \begin{proofclaim} ... \end{proofclaim} → ends with □ (hollow square, for Claim)
-%   Use \qedhere inside displayed equations to place QED on the equation line
+% Uses amsthm's QED handling with proper placement for displayed equations
+% 
+% Standard Usage (regular text ending):
+%   \begin{proof}
+%     Text...
+%   \end{proof}
+%   → QED appears at the end of the last line of text
+%
+% With displayed equation ending:
+%   \begin{proof}
+%     Text...
+%     \[
+%       equation
+%       \qedhere  % Place this at the END of the displayed equation
+%     \]
+%   \end{proof}
+%   → QED appears on the same line as the equation, right-aligned
+%
+% Same pattern applies to align*, equation*, and other AMS environments
+%
+% Environments:
+%   \begin{proof} ... \end{proof}           → ends with ∎ (black square)
+%   \begin{prooflemma} ... \end{prooflemma} → ends with □ (hollow square)
+%   \begin{proofclaim} ... \end{proofclaim} → ends with □ (hollow square)
 
 % Custom QED symbols for each proof type
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \newcommand{\qedsymbollemma}{$\square$}
 \newcommand{\qedsymbolclaim}{$\square$}
 
-% Redefine proof using amsthm's \proof template with custom styling
+% Redefine proof with improved QED positioning
+% Key changes:
+% - Uses \pushQED{\qed} at start to enable \qedhere support
+% - Minimizes spacing issues that could push QED to next line  
+% - Properly handles both text and displayed equation endings
 \renewenvironment{proof}[1][\proofname]{%
-    \vspace{0.5em}\pushQED{\qed}%
-    \par\noindent\textbf{#1.}\setlength{\parskip}{0em}%
+    \par\vspace{0.5em}%
+    \pushQED{\qed}%
+    \normalfont\noindent\textbf{#1.}\setlength{\parskip}{0em}%
 }{%
-    \popQED\par\vspace{0.3em}
+    \popQED\par\vspace{0.3em}%
 }
 
 \newenvironment{prooflemma}{%
-    \vspace{0.5em}\pushQED{\qed}%
-    \par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \par\vspace{0.5em}%
+    \pushQED{\qed}%
+    \normalfont\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbollemma}%
 }{%
     \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.3em}
+    \popQED\par\vspace{0.3em}%
 }
 
 \newenvironment{proofclaim}{%
-    \vspace{0.5em}\pushQED{\qed}%
-    \par\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \par\vspace{0.5em}%
+    \pushQED{\qed}%
+    \normalfont\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbolclaim}%
 }{%
     \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.3em}
+    \popQED\par\vspace{0.3em}%
 }
 
 % ========== SOLUTION ENVIRONMENT ==========
