@@ -258,29 +258,29 @@
 \renewenvironment{proof}[1][\proofname]{%
     \par\vspace{0.5em}%
     \pushQED{\qed}%
-    \normalfont\noindent\textbf{#1.}\setlength{\parskip}{0em}%
+    \normalfont\noindent\textbf{#1.}\ \setlength{\parskip}{0em}%
 }{%
-    \popQED\par\vspace{0.3em}%
+    \popQED\par\vspace{0.2em}%
 }
 
 \newenvironment{prooflemma}{%
     \par\vspace{0.5em}%
     \pushQED{\qed}%
-    \normalfont\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \normalfont\noindent\textbf{Proof.}\ \setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbollemma}%
 }{%
     \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.3em}%
+    \popQED\par\vspace{0.2em}%
 }
 
 \newenvironment{proofclaim}{%
     \par\vspace{0.5em}%
     \pushQED{\qed}%
-    \normalfont\noindent\textbf{Proof.}\setlength{\parskip}{0em}%
+    \normalfont\noindent\textbf{Proof.}\ \setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbolclaim}%
 }{%
     \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.3em}%
+    \popQED\par\vspace{0.2em}%
 }
 
 % ========== SOLUTION ENVIRONMENT ==========
@@ -308,13 +308,13 @@
 %   \begin{problem*} ... \end{problem*} → unnumbered problem
 
 \newenvironment{problem}{%
-    \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}\setlength{\parskip}{0em}%
+    \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}\ \setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
 
 \newenvironment{problem*}{%
-    \vspace{0.8em}\par\noindent\textbf{Problem.}\setlength{\parskip}{0em}%
+    \vspace{0.8em}\par\noindent\textbf{Problem.}\ \setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
