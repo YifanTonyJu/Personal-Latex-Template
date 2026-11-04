@@ -475,9 +475,15 @@
 
     \vspace{0.1cm}
     \hrulefill
-    \vspace{0.8cm}
-
+    \par
     \endgroup
+    \ifTitleOnly
+        % Match the running-header rule-to-first-line distance.
+        % Problem/theorem environments already add 0.8em before the line.
+        \vspace{\dimexpr\headsep+\topskip-\baselineskip-0.8em-0.4pt\relax}%
+    \else
+        \vspace{0.8cm}%
+    \fi
 }
 
 % Info box environment
