@@ -149,61 +149,61 @@
 \newenvironment{theorem}{%
     \stepcounter{theoremcounter}\vspace{0.8em}\par\noindent\textbf{Theorem \arabic{theoremcounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{theorem*}{%
     \vspace{0.8em}\par\noindent\textbf{Theorem.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{lemma}{%
     \stepcounter{lemmacounter}\vspace{0.8em}\par\noindent\textbf{Lemma \arabic{lemmacounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{lemma*}{%
     \vspace{0.8em}\par\noindent\textbf{Lemma.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{claim}{%
-    \stepcounter{claimcounter}\vspace{0.8em}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape\setlength{\parskip}{0em}%
+    \stepcounter{claimcounter}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{claim*}{%
-    \vspace{0.8em}\par\noindent\textbf{Claim.}\itshape\setlength{\parskip}{0em}%
+    \par\noindent\textbf{Claim.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{corollary}{%
     \stepcounter{corollarycounter}\vspace{0.8em}\par\noindent\textbf{Corollary \arabic{corollarycounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{corollary*}{%
     \vspace{0.8em}\par\noindent\textbf{Corollary.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{proposition}{%
     \stepcounter{propositioncounter}\vspace{0.8em}\par\noindent\textbf{Proposition \arabic{propositioncounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{proposition*}{%
     \vspace{0.8em}\par\noindent\textbf{Proposition.}\itshape\setlength{\parskip}{0em}%
 }{%
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{definition}{%
@@ -256,7 +256,7 @@
 % - Minimizes spacing issues that could push QED to next line  
 % - Properly handles both text and displayed equation endings
 \renewenvironment{proof}[1][\proofname]{%
-    \par\vspace{0.5em}%
+    \par\addvspace{0.5em}%
     \pushQED{\qed}%
     \normalfont\noindent\textbf{#1.}\ \setlength{\parskip}{0em}%
 }{%
@@ -264,23 +264,21 @@
 }
 
 \newenvironment{prooflemma}{%
-    \par\vspace{0.5em}%
+    \par\addvspace{0.5em}%
     \pushQED{\qed}%
     \normalfont\noindent\textbf{Proof.}\ \setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbollemma}%
 }{%
-    \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.2em}%
+    \popQED\par\vspace{0.5em}%
 }
 
 \newenvironment{proofclaim}{%
-    \par\vspace{0.5em}%
+    \par\addvspace{0.5em}%
     \pushQED{\qed}%
     \normalfont\noindent\textbf{Proof.}\ \setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbolclaim}%
 }{%
-    \renewcommand{\qedsymbol}{$\blacksquare$}%
-    \popQED\par\vspace{0.2em}%
+    \popQED\par\vspace{0.5em}%
 }
 
 % ========== SOLUTION ENVIRONMENT ==========
@@ -290,13 +288,13 @@
 %   \begin{solution*} ... \end{solution*} → unnumbered solution
 
 \newenvironment{solution}{%
-    \stepcounter{solutioncounter}\vspace{0.8em}\par\noindent\textbf{Solution \arabic{solutioncounter}.}\setlength{\parskip}{0em}%
+    \stepcounter{solutioncounter}\par\addvspace{0.5em}\noindent\textbf{Solution \arabic{solutioncounter}.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
 
 \newenvironment{solution*}{%
-    \vspace{0.8em}\par\noindent\textbf{Solution.}\setlength{\parskip}{0em}%
+    \par\addvspace{0.5em}\noindent\textbf{Solution.}\setlength{\parskip}{0em}%
 }{
     \par\vspace{0.2em}
 }
@@ -310,13 +308,13 @@
 \newenvironment{problem}{%
     \stepcounter{problemcounter}\vspace{0.8em}\par\noindent\textbf{Problem \arabic{problemcounter}.}\ \setlength{\parskip}{0em}%
 }{
-    \par\vspace{0.2em}
+    \par
 }
 
 \newenvironment{problem*}{%
     \vspace{0.8em}\par\noindent\textbf{Problem.}\ \setlength{\parskip}{0em}%
 }{
-    \par\vspace{0.2em}
+    \par
 }
 
 % Document metadata
