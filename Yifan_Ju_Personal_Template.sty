@@ -170,14 +170,15 @@
     \par
 }
 
+\newcommand{\YJ@claimskip}{0.5em}
 \newenvironment{claim}{%
-    \stepcounter{claimcounter}\par\noindent\textbf{Claim \arabic{claimcounter}.}\itshape\setlength{\parskip}{0em}%
+    \stepcounter{claimcounter}\par\addvspace{\YJ@claimskip}\noindent\textbf{Claim \arabic{claimcounter}.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par
 }
 
 \newenvironment{claim*}{%
-    \par\noindent\textbf{Claim.}\itshape\setlength{\parskip}{0em}%
+    \par\addvspace{\YJ@claimskip}\noindent\textbf{Claim.}\itshape\setlength{\parskip}{0em}%
 }{%
     \par
 }
@@ -272,9 +273,48 @@
     \popQED\par\vspace{0.5em}%
 }
 
+% Look past closing itemize environments before the last item's paragraph ends.
+% A following conclusion uses the normal proof margin and receives the QED.
+\newif\ifYJ@claimproof
+\AddToHook{env/itemize/begin}{%
+    \ifYJ@claimproof
+        \ifx\end\YJ@listend\else
+            \let\YJ@savedend\end
+            \let\end\YJ@listend
+        \fi
+    \fi
+}
+\protected\def\YJ@listend#1{%
+    \ifstrequal{#1}{itemize}
+        {\YJ@afteritems{\YJ@savedend{itemize}}}
+        {\YJ@savedend{#1}}%
+}
+\newcommand{\YJ@afteritems}[1]{%
+    \@ifnextchar\end{\YJ@nextend{#1}}{%
+        \@ifnextchar\par{\YJ@nextpar{#1}}{#1}}%
+}
+\long\def\YJ@nextpar#1\par{\YJ@afteritems{#1\par}}
+\long\def\YJ@nextend#1\end#2{%
+    \ifstrequal{#2}{itemize}
+        {\YJ@afteritems{#1\YJ@savedend{itemize}}}
+        {\ifstrequal{#2}{proofclaim}{\ifhmode\qedhere\fi}{}%
+         #1\end{#2}}%
+}
+
+% Leave a half-em gap before a text QED and keep it with the preceding word.
+\newcommand{\YJ@claimqed}{%
+    \ifmmode\qed\else
+        \leavevmode\unskip\nobreak\hfill\enspace\hbox{\qedsymbol}%
+    \fi
+}
 \newenvironment{proofclaim}{%
-    \par\addvspace{0.5em}%
-    \pushQED{\qed}%
+    \par\addvspace{\YJ@claimskip}%
+    \YJ@claimprooftrue
+    \setlength{\parindent}{0pt}%
+    % Keep the opening gap, then resume ordinary proof paragraphs below the list.
+    \setlist*[itemize,1]{leftmargin=*,topsep=\YJ@claimskip,partopsep=0pt,
+                         after*={\setlength{\@topsepadd}{0pt}}}%
+    \pushQED{\YJ@claimqed}%
     \normalfont\noindent\textbf{Proof.}\ \setlength{\parskip}{0em}%
     \renewcommand{\qedsymbol}{\qedsymbolclaim}%
 }{%
